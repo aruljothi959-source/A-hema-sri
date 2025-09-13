@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern CSS Showcase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables for theming */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4cc9f0;
+            --warning: #f9c74f;
+            --danger: #f94144;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f8f9fa;
+            padding-bottom: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            line-height: 1.2;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Grid System */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background: var(--primary);
+            color: white;
+            padding: 1.2rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            margin: 0.3rem;
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-accent {
+            background: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background: #e40267;
+        }
+
+        /* Navigation */
+        .tabs {
+            display: flex;
+            list-style: none;
+            background: #f1f3f5;
+            border-radius: 50px;
+            padding: 0.3rem;
+            margin: 1.5rem 0;
+        }
+
+        .tabs li {
+            flex: 1;
+            text-align: center;
+        }
+
+        .tabs a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            text-decoration: none;
+            color: var(--gray);
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .tabs a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #e9ecef;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        /* Utilities */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-2 { margin-top: 2rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .p-2 { padding: 2rem; }
+
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0.3rem;
+        }
+
+        .badge-primary {
+            background: rgba(67, 97, 238, 0.15);
+            color: var(--primary);
+        }
+
+        .badge-accent {
+            background: rgba(247, 37, 133, 0.15);
+            color: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Demo Components */
+        .color-swatch {
+            height: 100px;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .swatch-primary { background: var(--primary); }
+        .swatch-secondary { background: var(--secondary); }
+        .swatch-accent { background: var(--accent); }
+        .swatch-success { background: var(--success); }
+        .swatch-warning { background: var(--warning); color: var(--dark); }
+        .swatch-danger { background: var(--danger); }
+
+        .icon-box {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            background: rgba(67, 97, 238, 0.05);
+            transition: var(--transition);
+        }
+
+        .icon-box:hover {
+            background: rgba(67, 97, 238, 0.1);
+            transform: scale(1.05);
+        }
+
+        .icon-box i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Modern CSS Showcase</h1>
+            <p>Exploring modern CSS features, layout techniques, and design patterns</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="animate">
+            <h2>CSS Grid Layout</h2>
+            <p>Modern grid-based layout system for creating responsive web designs</p>
+            
+            <div class="grid">
+                <div class="card animate delay-1">
+                    <div class="card-header">Grid Item 1</div>
+                    <div class="card-body">
+                        <p>CSS Grid allows you to create two-dimensional layouts with precise control over both rows and columns.</p>
+                        <span class="badge badge-primary">Grid</span>
+                        <span class="badge badge-accent">Layout</span>
+                    </div>
+                </div>
+                
+                <div class="card animate delay-1">
+                    <div class="card-header">Grid Item 2</div>
+                    <div class="card-body">
+                        <p>Fully responsive without media queries using auto-fit and minmax functions.</p>
+                        <span class="badge badge-primary">Responsive</span>
+                        <span class="badge badge-accent">Auto-fit</span>
+                    </div>
+                </div>
+                
+                <div class="card animate delay-2">
+                    <div class="card-header">Grid Item 3</div>
+                    <div class="card-body">
+                        <p>Grid gap property adds consistent spacing between grid items without margin conflicts.</p>
+                        <span class="badge badge-primary">Gap</span>
+                        <span class="badge badge-accent">Spacing</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="animate">
+            <h2>Color System</h2>
+            <p>CSS custom properties (variables) for consistent theming across your application</p>
+            
+            <div class="grid">
+                <div class="text-center">
+                    <div class="color-swatch swatch-primary">Primary</div>
+                    <p>var(--primary)</p>
+                </div>
+                <div class="text-center">
+                    <div class="color-swatch swatch-secondary">Secondary</div>
+                    <p>var(--secondary)</p>
+                </div>
+                <div class="text-center">
+                    <div class="color-swatch swatch-accent">Accent</div>
+                    <p>var(--accent)</p>
+                </div>
+                <div class="text-center">
+                    <div class="color-swatch swatch-success">Success</div>
+                    <p>var(--success)</p>
+                </div>
+                <div class="text-center">
+                    <div class="color-swatch swatch-warning">Warning</div>
+                    <p>var(--warning)</p>
+                </div>
+                <div class="text-center">
+                    <div class="color-swatch swatch-danger">Danger</div>
+                    <p>var(--danger)</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="animate">
+            <h2>UI Components</h2>
+            <p>Reusable components with consistent styling and interactive states</p>
+            
+            <h3>Buttons</h3>
+            <div class="mb-2">
+                <button class="btn">Primary Button</button>
+                <button class="btn btn-outline">Outline Button</button>
+                <button class="btn btn-accent">Accent Button</button>
+            </div>
+            
+            <h3>Navigation</h3>
+            <ul class="tabs">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            
+            <h3>Form Elements</h3>
+            <div class="grid">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="4" placeholder="Enter your message"></textarea>
+            </div>
+            <button class="btn">Submit Form</button>
+        </section>
+
+        <section class="animate">
+            <h2>Icon System</h2>
+            <p>Using Font Awesome for scalable vector icons that can be customized with CSS</p>
+            
+            <div class="grid">
+                <div class="icon-box">
+                    <i class="fas fa-laptop-code"></i>
+                    <h4>Responsive</h4>
+                    <p>Works on all device sizes</p>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-bolt"></i>
+                    <h4>Fast</h4>
+                    <p>Optimized for performance</p>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-cog"></i>
+                    <h4>Customizable</h4>
+                    <p>Easy to tailor to your needs</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="animate">
+            <h2>CSS Animations</h2>
+            <p>Adding motion to your interface with CSS transitions and keyframe animations</p>
+            
+            <div class="text-center mt-2">
+                <button class="btn" id="animateBtn">Trigger Animation</button>
+                <div class="color-swatch swatch-accent mt-2" id="animatedElement">Animate Me!</div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Simple animation trigger
+        document.getElementById('animateBtn').addEventListener('click', function() {
+            const element = document.getElementById('animatedElement');
+            element.style.animation = 'none';
+            setTimeout(() => {
+                element.style.animation = 'fadeIn 0.6s ease forwards';
+            }, 10);
+        });
+    </script>
+</body>
+</html>
