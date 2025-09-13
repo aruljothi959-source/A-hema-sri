@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Interactive Examples</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            color: #6e8efb;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            color: #6e8efb;
+            margin: 15px 0;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #6e8efb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+        
+        .btn:hover {
+            background: #5a7df9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-danger {
+            background: #ff6b6b;
+        }
+        
+        .btn-danger:hover {
+            background: #ff5252;
+        }
+        
+        .btn-success {
+            background: #4ecdc4;
+        }
+        
+        .btn-success:hover {
+            background: #3dbbb3;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #eaeaea;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        input:focus {
+            border-color: #6e8efb;
+            outline: none;
+        }
+        
+        .code-container {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .result {
+            background: #eef7ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            min-height: 50px;
+            border-left: 4px solid #6e8efb;
+        }
+        
+        .counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        
+        .counter-value {
+            margin: 0 20px;
+            font-weight: bold;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin: 10px 0;
+            background: #f9f9f9;
+            border-radius: 5px;
+            border-left: 4px solid #6e8efb;
+        }
+        
+        .todo-item.completed {
+            opacity: 0.7;
+            text-decoration: line-through;
+            border-left-color: #4ecdc4;
+        }
+        
+        .color-box {
+            width: 150px;
+            height: 150px;
+            margin: 15px auto;
+            border-radius: 8px;
+            transition: all 0.5s ease;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #777;
+        }
+        
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>JavaScript Interactive Examples</h1>
+            <p>Learn JavaScript through practical examples and interactive demos</p>
+        </header>
+        
+        <div class="grid">
+            <div class="card">
+                <h2>Counter</h2>
+                <p>A simple counter that demonstrates state management with JavaScript.</p>
+                <div class="counter">
+                    <button class="btn btn-danger" id="decrement">-</button>
+                    <div class="counter-value" id="counterValue">0</div>
+                    <button class="btn btn-success" id="increment">+</button>
+                </div>
+                <button class="btn" id="resetCounter">Reset</button>
+            </div>
+            
+            <div class="card">
+                <h2>Color Changer</h2>
+                <p>Change the background color of the box using JavaScript.</p>
+                <div class="color-box" id="colorBox"></div>
+                <button class="btn" id="colorRed">Red</button>
+                <button class="btn" id="colorBlue">Blue</button>
+                <button class="btn" id="colorGreen">Green</button>
+                <button class="btn" id="colorRandom">Random</button>
+            </div>
+            
+            <div class="card">
+                <h2>To-Do List</h2>
+                <p>Add and manage tasks with this simple to-do list application.</p>
+                <input type="text" id="todoInput" placeholder="Enter a new task...">
+                <button class="btn" id="addTodo">Add Task</button>
+                <div id="todoList"></div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>DOM Manipulation</h2>
+            <p>JavaScript can manipulate the Document Object Model (DOM) to change page content.</p>
+            
+            <h3>Text Manipulation</h3>
+            <p id="changeText">This text will change when you click the button below.</p>
+            <button class="btn" id="changeTextBtn">Change Text</button>
+            
+            <h3>Add New Elements</h3>
+            <button class="btn" id="addElementBtn">Add New Element</button>
+            <div id="elementContainer"></div>
+        </div>
+        
+        <div class="card">
+            <h2>Event Handling</h2>
+            <p>JavaScript can respond to user interactions like clicks, mouse movements, and keyboard input.</p>
+            
+            <h3>Mouse Events</h3>
+            <div class="result" id="mouseResult">Move your mouse over this box</div>
+            
+            <h3>Keyboard Events</h3>
+            <input type="text" id="keyboardInput" placeholder="Type something here...">
+            <div class="result" id="keyboardResult">Your input will appear here</div>
+        </div>
+        
+        <div class="card">
+            <h2>API Fetch Example</h2>
+            <p>JavaScript can retrieve data from external APIs and display it on your web page.</p>
+            <button class="btn" id="fetchUserBtn">Fetch Random User</button>
+            <div class="result" id="userData">User data will appear here</div>
+        </div>
+        
+        <div class="card">
+            <h2>JavaScript Code Examples</h2>
+            <p>Here are some common JavaScript patterns and syntax:</p>
+            
+            <h3>Arrow Function</h3>
+            <div class="code-container">
+                <pre><code>// Arrow function example
+const multiply = (a, b) => a * b;
+console.log(multiply(5, 3)); // Output: 15</code></pre>
+            </div>
+            
+            <h3>Array Map</h3>
+            <div class="code-container">
+                <pre><code>// Using map to transform an array
+const numbers = [1, 2, 3, 4, 5];
+const squared = numbers.map(n => n * n);
+console.log(squared); // Output: [1, 4, 9, 16, 25]</code></pre>
+            </div>
+            
+            <h3>Destructuring Assignment</h3>
+            <div class="code-container">
+                <pre><code>// Object destructuring
+const person = { name: 'John', age: 30, city: 'New York' };
+const { name, age } = person;
+console.log(name); // Output: John
+console.log(age);  // Output: 30</code></pre>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Created with JavaScript, HTML, and CSS | &copy; 2023 JavaScript Examples</p>
+        </footer>
+    </div>
+
+    <script>
+        // Counter functionality
+        let count = 0;
+        const counterValue = document.getElementById('counterValue');
+        const incrementBtn = document.getElementById('increment');
+        const decrementBtn = document.getElementById('decrement');
+        const resetBtn = document.getElementById('resetCounter');
+        
+        incrementBtn.addEventListener('click', () => {
+            count++;
+            counterValue.textContent = count;
+        });
+        
+        decrementBtn.addEventListener('click', () => {
+            count--;
+            counterValue.textContent = count;
+        });
+        
+        resetBtn.addEventListener('click', () => {
+            count = 0;
+            counterValue.textContent = count;
+        });
+        
+        // Color changer functionality
+        const colorBox = document.getElementById('colorBox');
+        document.getElementById('colorRed').addEventListener('click', () => {
+            colorBox.style.backgroundColor = '#ff6b6b';
+        });
+        document.getElementById('colorBlue').addEventListener('click', () => {
+            colorBox.style.backgroundColor = '#6e8efb';
+        });
+        document.getElementById('colorGreen').addEventListener('click', () => {
+            colorBox.style.backgroundColor = '#4ecdc4';
+        });
+        document.getElementById('colorRandom').addEventListener('click', () => {
+            const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            colorBox.style.backgroundColor = randomColor;
+        });
+        
+        // To-Do List functionality
+        const todoInput = document.getElementById('todoInput');
+        const addTodoBtn = document.getElementById('addTodo');
+        const todoList = document.getElementById('todoList');
+        
+        addTodoBtn.addEventListener('click', () => {
+            if (todoInput.value.trim() !== '') {
+                const todoItem = document.createElement('div');
+                todoItem.classList.add('todo-item');
+                
+                const todoText = document.createElement('span');
+                todoText.textContent = todoInput.value;
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.classList.add('btn', 'btn-danger');
+                deleteBtn.style.padding = '5px 10px';
+                deleteBtn.style.fontSize = '0.8rem';
+                
+                todoItem.appendChild(todoText);
+                todoItem.appendChild(deleteBtn);
+                todoList.appendChild(todoItem);
+                
+                todoInput.value = '';
+                
+                // Toggle completed state
+                todoText.addEventListener('click', () => {
+                    todoItem.classList.toggle('completed');
+                });
+                
+                // Delete todo item
+                deleteBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    todoList.removeChild(todoItem);
+                });
+            }
+        });
+        
+        // Allow adding todo with Enter key
+        todoInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                addTodoBtn.click();
+            }
+        });
+        
+        // DOM Manipulation examples
+        document.getElementById('changeTextBtn').addEventListener('click', () => {
+            const textElement = document.getElementById('changeText');
+            textElement.textContent = 'The text has been changed with JavaScript!';
+            textElement.style.color = '#6e8efb';
+            textElement.style.fontWeight = 'bold';
+        });
+        
+        document.getElementById('addElementBtn').addEventListener('click', () => {
+            const container = document.getElementById('elementContainer');
+            const newElement = document.createElement('div');
+            newElement.classList.add('result');
+            newElement.innerHTML = `<p>New element added on ${new Date().toLocaleTimeString()}</p>`;
+            container.appendChild(newElement);
+        });
+        
+        // Event handling examples
+        const mouseResult = document.getElementById('mouseResult');
+        mouseResult.addEventListener('mouseover', () => {
+            mouseResult.textContent = 'Mouse is over the box!';
+            mouseResult.style.background = '#e1f0ff';
+        });
+        
+        mouseResult.addEventListener('mouseout', () => {
+            mouseResult.textContent = 'Move your mouse over this box';
+            mouseResult.style.background = '#eef7ff';
+        });
+        
+        const keyboardInput = document.getElementById('keyboardInput');
+        const keyboardResult = document.getElementById('keyboardResult');
+        
+        keyboardInput.addEventListener('input', () => {
+            keyboardResult.textContent = `You typed: ${keyboardInput.value}`;
+        });
+        
+        // API Fetch example
+        document.getElementById('fetchUserBtn').addEventListener('click', () => {
+            const userData = document.getElementById('userData');
+            userData.textContent = 'Loading...';
+            
+            fetch('https://jsonplaceholder.typicode.com/users/' + Math.floor(Math.random() * 10 + 1))
+                .then(response => response.json())
+                .then(data => {
+                    userData.innerHTML = `
+                        <p><strong>Name:</strong> ${data.name}</p>
+                        <p><strong>Email:</strong> ${data.email}</p>
+                        <p><strong>Phone:</strong> ${data.phone}</p>
+                        <p><strong>Website:</strong> ${data.website}</p>
+                    `;
+                })
+                .catch(error => {
+                    userData.textContent = 'Failed to fetch user data. Please try again.';
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+</html>
